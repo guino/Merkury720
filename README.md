@@ -7,6 +7,7 @@ You can check the current camera firmware in the app (tuya/geeni/smart life/etc)
 http://admin:056565099@IP/devices/deviceinfo
 
 If you have firmware 2.9.x then chances are the information [HERE](https://github.com/guino/BazzDoorbell/issues/2) will work for you.
+NOTE: If your know your camera is similar OR it's a TUYA camera, you may try this process even if you get no response from the deviceinfo URL -- there's still a chance it will work but you'll have to check your SD card after the process is done to see if a 'hack' file was created in the SD card.
 
 ### Background
 
