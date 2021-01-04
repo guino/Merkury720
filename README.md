@@ -68,3 +68,12 @@ NOTES:
 * I recommend reading the information/process/notes on https://github.com/guino/BazzDoorbell/issues/2 as most of the stuff in there is also valid for this device and may help you run the device better. Some customizations such as offline/mqtt/etc may also be possible for this device (just look at the issues under the BazzDoorBell project).
 * If you'd like help patching your ppsapp , please feel free to post it [HERE](https://github.com/guino/Merkury720/issues/1) along with the firmware version from http://admin:056565099@IP/devices/deviceinfo for your device.
 * I could not find an option in the tuya app to set this device to record only **on motion** but it was easy to telnet into it and modify /home/cfg/tuya_config.json to set **"enable_event_record": 1** which did the trick (same as my other device). This may go away if I change settings in the app but there's nothing I can think of changing so I am good for now. You could copy the modified file over during boot if you like but I would don't recommend constantly writing to the flash without needing (it will wear it out).
+* It is possible that different hardware/firmware/SD card brands may cause the device to boot slower than normal which could cause the initrun.sh script not to run after the SD card is mounted. What you can try in that case is to change the **30** in the env file (hack= line) to **60** and repeat step 4. After booting verify that the cmd line changed to 60 where it was 30, then wait 1-2 mins after booting and see if the script ran (step 7). You could also try a different SD card to see if makes any difference. On my tests/device/SD card the script always ran but this hack has no way to 'monitor' the SD card mount status (it just waits and hopes it's ready).
+
+If you'd like to buy me a beer/coffee in appreciation of the effort I put in to make the above possible, feel free to:
+
+http://paypal.me/wbbo
+
+cash app: $wbbo
+
+Enjoy!
