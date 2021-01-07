@@ -2,7 +2,7 @@
 
 This project contains information and files to Root(hack) and Customize the Merkury 720P and similar cameras (i.e. geeni, teco, etc) running older 2.7.x firmware. 
 
-You can check the current camera firmware in the app (tuya/geeni/smart life/etc) or with this URL:
+You can check the current camera firmware in the app (tuya/geeni/smart life/etc) or with this URL (some users report no http response on their device, but you can still try the steps below):
 
 http://admin:056565099@IP/devices/deviceinfo
 
@@ -52,11 +52,11 @@ The process was made very simple, and should be farily safe (even if you mess th
 ```
 mem=64M console=ttySAK0,115200n8 mtdparts=spi0.0:256k(bld)ro,64k(env)ro,64k(enc)ro,64k(sysflg)ro,2496k(sys),4608k(app),640k(cfg) ppsAppParts=5 ip=0 - ip=30;/mnt/mmc01/initrun.sh)&:::::;date>/tmp/hack;(sleep
 ```
-6. If you don't see the last part after **- ip=30...** then the hack did not work and your camera should work normally (not rooted). I had this happen when testing with a ATP (Industrial grade) SD card but everything worked fine with a cheap/crappy Samsung Evo 32GB SD card, so you can try again with different cards.
-7. Open this URL: http://admin:056565099@IP/proc/self/root/mnt/mmc01/hack it should say 'done' indicating the hack worked.
+6. If you don't see the last part after **- ip=30...** then the hack did not work and your camera should work normally (not rooted). I had this happen when testing with a ATP (Industrial grade) SD card but everything worked fine with a cheap/crappy Samsung Evo 32GB SD card, so you can try again with different cards. It has also been reported that using different tools to partition/format the SD card may help in making this work.
+7. Open this URL: http://admin:056565099@IP/proc/self/root/mnt/mmc01/hack it should say 'done' indicating the hack worked (you may also just remove the SD card and check for a 'hack' file and 'home' directory indicating it worked (some users report no http response on their device).
 8. Power off the device and take the SD card to a computer, you should find your ppsapp under home/app/ so you can look for a patch to enable RTSP [HERE](https://github.com/guino/ppsapp-rtsp/issues/1) OR (for more savvy users) you can patch it yourself with instructions [HERE](https://github.com/guino/ppsapp-rtsp) -- if you do make a patch please post it in the first link so others can use it too. Place the patched ppsapp in the **root** of the SD card so it is loaded the next time you boot the device with the SD card in it.
-9. For telnet access: either set the password hash in the passwd file (get a hash [here](https://unix4lyfe.org/crypt/) using the calculate 'DES' button and copy the value) OR add -l /bin/sh to the telnetd line in custom.sh (for no password)
-10. For snap.cgi and mjpeg.cgi to work you'll need to adjust the address in these files (as provided with the patch file) -- the address on the default files is from my camera as provided [HERE](https://github.com/guino/ppsapp-rtsp/issues/1#issuecomment-740389996). The URL to view these will be http://user:password@IP:8080/cgi-bin/snap.cgi and http://user:password@IP:8080/cgi-bin/mjpeg.cgi -- you can set the user:password in httpd.conf (the password is NOT a hash, it is just plain text).
+9. For telnet access: either set the password hash in the passwd file (get a hash [here](https://unix4lyfe.org/crypt/) using the calculate 'DES' button and copy the value) OR add `-l /bin/sh` to the telnetd line in custom.sh (for no password)
+10. For snap.cgi and mjpeg.cgi to work you'll need to adjust the address in these files (as provided with the patch file) -- the address on the default files is from my camera as provided [HERE](https://github.com/guino/ppsapp-rtsp/issues/1#issuecomment-740389996). The URL to view these will be http://user:password@IP:8080/cgi-bin/snap.cgi and http://user:password@IP:8080/cgi-bin/mjpeg.cgi -- you can set the user:password in httpd.conf (the password here is NOT a hash, it is just plain text).
 
 NOTES:
 * There's no need to "remove" the root/hack -- if you boot the device without a SD card (or scripts) it should work normally, just without the root/customizations.
@@ -67,9 +67,10 @@ NOTES:
 * The device **will erase files** from the SD card if the free space is low -- so I recommend running the cleanup.cgi script daily to prevent your files from being deleted (which would cause the root/customizations to go away) OR you can alternatively disable recording. The cleanup.cgi script needs to be adjusted with your devices SERIAL number and number of days to keep files.
 * You should **never** run ppsapp from a different version on your device -- this may brick it.
 * I recommend reading the information/process/notes on https://github.com/guino/BazzDoorbell/issues/2 as most of the stuff in there is also valid for this device and may help you run the device better. Some customizations such as offline/mqtt/etc may also be possible for this device (just look at the issues under the BazzDoorBell project).
-* If you'd like help patching your ppsapp , please feel free to post it [HERE](https://github.com/guino/Merkury720/issues/1) along with the firmware version from http://admin:056565099@IP/devices/deviceinfo for your device.
+* If you'd like help patching your ppsapp , please feel free to post it [HERE](https://github.com/guino/Merkury720/issues/1) along with the firmware, hardware and model information from http://admin:056565099@IP/devices/deviceinfo for your device.
 * I could not find an option in the tuya app to set this device to record only **on motion** but it was easy to telnet into it and modify /home/cfg/tuya_config.json to set **"enable_event_record": 1** which did the trick (same as my other device). This may go away if I change settings in the app but there's nothing I can think of changing so I am good for now. You could copy the modified file over during boot if you like but I would don't recommend constantly writing to the flash without needing (it will wear it out).
 * It is possible that different hardware/firmware/SD card brands may cause the device to boot slower than normal which could cause the initrun.sh script not to run after the SD card is mounted. What you can try in that case is to change the **30** in the env file (hack= line) to **60** and repeat step 4. After booting verify that the cmd line changed to 60 where it was 30, then wait 1-2 mins after booting and see if the script ran (step 7). You could also try a different SD card to see if makes any difference. On my tests/device/SD card the script always ran but this hack has no way to 'monitor' the SD card mount status (it just waits and hopes it's ready).
+* It is possible that a similar device with different firmware/hardware may use a different bootloader address in which case you could try the file in this post to 'force' the address to load the new bootloader settings. This should be safe to try/use on any device (worst case it just won't don anything).
 
 If you'd like to buy me a beer/coffee in appreciation of the effort I put in to make the above possible, feel free to:
 
