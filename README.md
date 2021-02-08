@@ -2,6 +2,8 @@
 
 This project contains information and files to Root(hack) and Customize the Merkury 720P and similar cameras (i.e. geeni, teco, etc) running older 2.7.x firmware. 
 
+**NOTICE**: Firmware 2.7.6 closes port 80 so any of the http://admin:05656... links below won't work on that firmware (or higher - likely), so you can still install the hack just ignoring the steps asking to check these links. As long as you get the ppsapp under /home/app of the SD card on Step 8 you can rest assured the hack worked.
+
 You can check the current camera firmware in the app (tuya/geeni/smart life/etc) or with this URL (some users report no http response on their device, but you can still try the steps below):
 
 http://admin:056565099@IP/devices/deviceinfo
