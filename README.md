@@ -2,7 +2,7 @@
 
 This project contains information and files to Root(hack) and Customize the Merkury 720P and similar cameras (i.e. geeni, teco, etc) running older 2.7.x firmware. 
 
-**NOTICE**: Firmware 2.7.6 closes port 80 so any of the http://admin:05656... links below won't work on that firmware (or higher - likely), so you can still install the hack just ignoring the steps asking to check these links. As long as you get the ppsapp under /home/app of the SD card on Step 8 you can rest assured the hack worked.
+**NOTICE**: Firmware 2.7.6 and newer have port 80 closed by default -- so to use the http://admin:05656... links below you have to RIGHT CLICK this link: https://github.com/guino/Merkury720/raw/main/ppsFactoryTool.txt select "Save as.." and save this file to the root of the SD card. **EDIT** the file (do NOT create it new and do NOT copy/paste the contents of it) and **modify only the ssid and password** (The file requires specific format to work). When the device detects the file (in the right format) it will disconnect and re-connect the wifi (to the wifi specified) and will OPEN port 80 so the http://admin:05656... links work.
 
 You can check the current camera firmware in the app (tuya/geeni/smart life/etc) or with this URL (some users report no http response on their device, but you can still try the steps below):
 
