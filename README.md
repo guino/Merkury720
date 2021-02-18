@@ -2,14 +2,17 @@
 
 This project contains information and files to Root(hack) and Customize the Merkury 720P and similar cameras (i.e. geeni, teco, etc) running older 2.7.x firmware. 
 
-**NOTICE**: Firmware 2.7.6 and newer have port 80 closed by default -- so to use the http://admin:05656... links below you have to RIGHT CLICK this link: https://github.com/guino/Merkury720/raw/main/ppsFactoryTool.txt select "Save as.." and save this file to the root of the SD card. **EDIT** the file (do NOT create it new and do NOT copy/paste the contents of it) and **modify only the ssid and password** (The file requires specific format to work). When the device detects the file (in the right format) it will disconnect and re-connect the wifi (to the wifi specified) and will OPEN port 80 so the http://admin:05656... links work.
+**NOTICE**: Firmware 2.7.6 and newer, 2.10.x and newer and 4.0.x have port 80 closed by default -- so to use the http://admin:05656... links below you have to RIGHT CLICK this link: https://github.com/guino/Merkury720/raw/main/ppsFactoryTool.txt select "Save as.." and save this file to the root of the SD card. **EDIT** the file (do NOT create it new and do NOT copy/paste the contents of it) and **modify only the ssid and password** (The file requires specific format to work). When the device detects the file (in the right format) it will disconnect and re-connect the wifi (to the wifi specified) and will OPEN port 80 (or port 8090 for 4.0.x) so the http://admin:05656... links work.
 
 You can check the current camera firmware in the app (tuya/geeni/smart life/etc) or with this URL (some users report no http response on their device, but you can still try the steps below):
 
-http://admin:056565099@IP/devices/deviceinfo
+http://admin:056565099@IP/devices/deviceinfo (on 4.0.x use http://admin:056565099@IP:8090/devices/deviceinfo)
 
 If you have firmware 2.9.x then chances are the information [HERE](https://github.com/guino/BazzDoorbell/issues/2) will work for you.
-NOTE: If your know your camera is similar OR it's a TUYA camera, you may try this process even if you get no response from the deviceinfo URL -- there's still a chance it will work but you'll have to check your SD card after the process is done to see if a 'hack' file was created in the SD card.
+
+If you have firmware 4.0.x then the information below can be used but there are different files you have to download from [HERE](https://github.com/guino/Merkury1080P#mjpegsnap-and-play-features)
+
+NOTE: If you know your camera is similar OR it's a TUYA camera, you may try this process even if you get no response from the deviceinfo URL -- there's still a chance it will work but you'll have to check your SD card after the process is done to see if a 'hack' file was created in the SD card.
 
 ### Background
 
